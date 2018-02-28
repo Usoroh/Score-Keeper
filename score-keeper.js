@@ -1,5 +1,6 @@
 var a = 0;
 var b = 0;
+var gameOver = false;
 
 var playerOne = document.querySelector("#playerOne");
 var playerTwo = document.querySelector("#playerTwo");
@@ -12,14 +13,16 @@ var numToPlay = document.querySelector("#numToPlay");
 numToPlay.value = 0;
 
 function addPoint(x,y,z) {
-	x++;
-	y.textContent = x;
-	if(x == playingTo.textContent){
-		y.style.color = "green";
-		alert("Game over! " + z + " won");
-		window.location.reload();
+	if(!gameOver){
+		x++;
+		y.textContent = x;
+		if(x == playingTo.textContent){
+			gameOver = true;
+			y.style.color = "green";
+			alert(z + " won!");
+		}
+		return x;
 	}
-	return x;
 }
 
 //add point to player one when clicked and check if won
