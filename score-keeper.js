@@ -39,11 +39,13 @@ numToPlay.addEventListener("change", function() {
 	playingTo.textContent = numToPlay.value;
 });
 
-reset.addEventListener("click", function refresh() {
+reset.addEventListener("click", function() {
 	a = 0;
 	b = 0;
 	leftScore.textContent = 0;
 	rightScore.textContent = 0;
 	numToPlay.value = 0;
 	playingTo.textContent = 0;
+	document.querySelector("h1").style.color = "black";
+	gameOver = false;
 });
