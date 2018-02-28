@@ -4,7 +4,7 @@ var gameOver = false;
 
 var playerOne = document.querySelector("#playerOne");
 var playerTwo = document.querySelector("#playerTwo");
-var reset = document.querySelector("#reset");
+var resetButton = document.querySelector("#reset");
 
 var leftScore = document.querySelector("#leftScore");
 var rightScore = document.querySelector("#rightScore");
@@ -18,12 +18,23 @@ function addPoint(x,y,z) {
 		y.textContent = x;
 		if(x == playingTo.textContent){
 			gameOver = true;
-			y.style.color = "green";
+			y.classList.add("winner");
 			alert(z + " won!");
 		}
 		return x;
 	}
 }
+
+function reset() {
+	a = 0;
+	b = 0;
+	leftScore.textContent = 0;
+	rightScore.textContent = 0;
+	gameOver = false;
+	leftScore.classList.remove("winner");
+	rightScore.classList.remove("winner");
+}
+
 
 //add point to player one when clicked and check if won
 playerOne.addEventListener("click", function() {
@@ -36,9 +47,10 @@ playerTwo.addEventListener("click", function() {
 });
 
 numToPlay.addEventListener("change", function() {
-	playingTo.textContent = numToPlay.value;
+	playingTo.textContent = this.value;
+	reset();
 });
 
-reset.addEventListener("click", function() {
-	window.location.reload();
+resetButton.addEventListener("click", function() {
+	reset();
 });
